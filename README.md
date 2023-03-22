@@ -82,7 +82,7 @@ Web Service Implementation using Spring Boot Framework, ORM Framework Hibernate 
 `PersistentListService` - Interface which is responsible for the persistent list service, inherits `ListService` and `PersistentService`
 
 ### Repository Layer
-Using the Hibernate Framework we only need one interface `PersistentListRepository` which inherits `JpaRepository<Version, Long>`:
+In the repository layer we only need one interface `PersistentListRepository` which inherits `JpaRepository<Version, Long>`:
 ```
 interface PersistentListRepository: JpaRepository<Version, Long> {
     @Query(value = "select p.id from Version p")
@@ -92,8 +92,6 @@ interface PersistentListRepository: JpaRepository<Version, Long> {
 Method `getAllIds` is used to respond to the request to give all available versions
 
 ### Database
-Database that was used is H2 (in-memory-database).
-
 Using the Hibernate Framework we need to create a table `Version` with annotations `@Entity` and `@Table` that stores the versions of the lists:
 ```
 @Entity
