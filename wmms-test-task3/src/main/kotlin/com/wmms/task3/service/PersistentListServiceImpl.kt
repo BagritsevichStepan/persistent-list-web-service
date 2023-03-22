@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service
 class PersistentListServiceImpl(var persistentListRepository: PersistentListRepository): PersistentListService {
     override fun getList(id: Long): List<Int> {
         try {
-            return persistentListRepository.getReferenceById(id).list!!
-        } catch (e: NullPointerException) {
+            return persistentListRepository.getReferenceById(id).persistentListVersion!!
+        } catch (e: Exception) {
             throw InvalidIdException(id)
         }
     }
@@ -50,7 +50,7 @@ class PersistentListServiceImpl(var persistentListRepository: PersistentListRepo
 
     private fun saveNewVersion(list: List<Int>): Version {
         val newVersion = Version()
-        newVersion.list = list
+        newVersion.persistentListVersion = list
         return persistentListRepository.save(newVersion)
     }
 

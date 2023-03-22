@@ -1,3 +1,6 @@
 package com.wmms.task3.exceptions
 
-class ElementNotFoundException(element: String): Exception("Element $element not found.")
+import org.springframework.http.HttpStatus
+import org.springframework.web.server.ResponseStatusException
+
+class ElementNotFoundException(element: String): ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Element $element not found.")

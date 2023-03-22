@@ -1,5 +1,6 @@
 package com.wmms.task3.controller
 
+import com.wmms.task3.controller.transfer.ListVersionTransfer
 import com.wmms.task3.controller.transfer.VersionsTransfer
 import com.wmms.task3.service.PersistentListService
 import org.springframework.stereotype.Controller
@@ -17,5 +18,5 @@ class PersistentListVersionsController(persistentListService: PersistentListServ
 
     @GetMapping("/add/empty")
     @ResponseBody
-    fun newVersion() = persistentListService.createEmptyList()
+    fun newVersion() = ListVersionTransfer(persistentListService.createEmptyList())
 }

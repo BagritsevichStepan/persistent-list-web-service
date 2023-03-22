@@ -13,5 +13,5 @@ data class Version(
     @NotNull
     @ElementCollection
     @Column
-    var list: List<Int>? = null
+    var persistentListVersion: List<Int>? = null
 )
