@@ -11,7 +11,7 @@ _Implemented with Kotlin_
 4. [Docker and Deployment](#stage4)
 
 ## <a name="stage1"></a>First stage. Spring Boot
-Web Service for Partially Persistent List Management Implementation using Spring Boot Framework, ORM Framework Hibernate (included in Spring Boot) and H2 Database (in-memory-database).
+Web Service Implementation using Spring Boot Framework, ORM Framework Hibernate (included in Spring Boot) and H2 Database (in-memory-database).
 
 [_Open project folder_](https://github.com/BagritsevichStepan/wmms-test-task3/tree/main/wmms-test-task3)
 
