@@ -63,6 +63,58 @@ Web Service Implementation using Spring Boot Framework, ORM Framework Hibernate 
 
 ### Project Structure
 
+### Controller Layer
+![controller layer structure](https://github.com/BagritsevichStepan/wmms-test-task3/blob/main/images/spring/2.png)
+
+`PersistentListVersionsController` - Controller that mapps requests with path /lists...
+
+`PersistentListUpdateController` - Controller that mapps requests with path /list/{id}...
+
+`PersistentListController` - Common controller
+
+### Service Layer
+![controller layer structure](https://github.com/BagritsevichStepan/wmms-test-task3/blob/main/images/spring/3.png)
+
+`ListService` - Generic Interface which is responsible for the list service and has methods for updating the list
+
+`PersistentService` - Generic Interface which is responsible for the service of persistent data structure and has method `getVersions`
+
+`PersistentListService` - Interface which is responsible for the persistent list service, inherits `ListService` and `PersistentService`
+
+### Repository Layer
+Using the Hibernate Framework we only need one interface `PersistentListRepository` which inherits `JpaRepository<Version, Long>`:
+```
+interface PersistentListRepository: JpaRepository<Version, Long> {
+    @Query(value = "select p.id from Version p")
+    fun getAllIds(): List<Long>
+}
+```
+Method `getAllIds` is used to respond to the request to give all available versions
+
+### Database
+Database that was used is H2 (in-memory-database).
+
+Using the Hibernate Framework we need to create a table `Version` with annotations `@Entity` and `@Table` that stores the versions of the lists:
+```
+@Entity
+@Table
+data class Version(
+    @Id
+    @GeneratedValue
+    var id: Long? = null,
+
+    @NotNull
+    @ElementCollection
+    @Column
+    var persistentListVersion: List<Int>? = null
+)
+```
+
+### Testing
+Technologies that were used for testing: SpringBootTesting, JUnit and Mockito
+
+TODO
+
 ## <a name="stage2"></a>Second stage. Jersey Framework
 TODO
 
