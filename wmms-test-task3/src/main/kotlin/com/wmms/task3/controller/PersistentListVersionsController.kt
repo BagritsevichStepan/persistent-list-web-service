@@ -15,7 +15,7 @@ class PersistentListVersionsController(persistentListService: PersistentListServ
     @ResponseBody
     fun getVersions() = VersionsTransfer(persistentListService.getVersions())
 
-    @GetMapping("/add")
+    @GetMapping("/add/empty")
     @ResponseBody
     fun newVersion() = persistentListService.createEmptyList()
 }

@@ -37,4 +37,9 @@ class PersistentListUpdateController(persistentListService: PersistentListServic
     @ResponseBody
     fun setElement(@PathVariable id: Long, @RequestBody newValue: NewValue) =
         ListVersionTransfer(persistentListService.set(id, newValue.oldValue, newValue.newValue))
+
+    @GetMapping("/delete/{oldElement}")
+    @ResponseBody
+    fun removeElementWithPathValue(@PathVariable id: Long, @PathVariable oldElement: Int) =
+        ListVersionTransfer(persistentListService.remove(id, oldElement))
 }

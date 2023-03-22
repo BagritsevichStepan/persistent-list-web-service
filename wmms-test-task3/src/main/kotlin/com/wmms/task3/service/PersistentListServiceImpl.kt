@@ -44,7 +44,7 @@ class PersistentListServiceImpl(var persistentListRepository: PersistentListRepo
 
     override fun getVersions() = persistentListRepository.getAllIds()
 
-    override fun createEmptyList() = saveNewVersion(ArrayList())
+    override fun createEmptyList() = saveNewVersionAndGetId(ArrayList())
 
     private fun saveNewVersionAndGetId(list: List<Int>) = saveNewVersion(list).id!!
 
