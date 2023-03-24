@@ -1,4 +1,4 @@
-package com.wmms.testtask3async.manager
+package com.wmms.testtask3async.util
 
 import javax.persistence.EntityManager
 import javax.persistence.EntityManagerFactory
@@ -12,6 +12,10 @@ class EntityManagerUtil {
 
         fun getEntityManager(): EntityManager {
             return entityManagerFactory.createEntityManager()
+        }
+
+        fun close() {
+            entityManagerFactory.close()
         }
     }
 }

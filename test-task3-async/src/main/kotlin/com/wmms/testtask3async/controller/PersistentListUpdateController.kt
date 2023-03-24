@@ -6,58 +6,51 @@ import com.wmms.testtask3async.exceptions.InvalidRequestBodyException
 import com.wmms.testtask3async.form.NewElement
 import com.wmms.testtask3async.form.NewValue
 import com.wmms.testtask3async.form.OldElement
-import com.wmms.testtask3async.manager.EntityManagerUtil
 import com.wmms.testtask3async.service.PersistentListService
 import com.wmms.testtask3async.service.PersistentListServiceImpl
-import javax.ws.rs.*
+import com.wmms.testtask3async.util.EntityManagerUtil
 
-@Path("/list/{id}")
-@Consumes("application/json")
-@Produces("application/json")
-class PersistentListUpdateController {
-    @GET
-    fun getList(@PathParam("id") id: Long) = ResponseBuilder.buildResponse {
-        return@buildResponse createPersistentListService().getList(id)
-    }
-
-    @POST
-    fun addElement(@PathParam("id") id: Long, newElement: NewElement) = ResponseBuilder.buildResponse {
-        if (newElement == null) {
-            throw InvalidRequestBodyException()
+open class PersistentListUpdateController {
+    companion object {
+        fun getList(id: Long) = ResponseBuilder.buildResponse {
+            return@buildResponse createPersistentListService().getList(id)
         }
-        return@buildResponse ListVersionTransfer(
-            createPersistentListService().add(id, newElement.newElement!!))
-    }
 
-    @DELETE
-    fun removeElement(@PathParam("id") id: Long, oldElement: OldElement) = ResponseBuilder.buildResponse {
-        if (oldElement == null) {
-            throw InvalidRequestBodyException()
+        fun addElement(id: Long, newElement: NewElement) = ResponseBuilder.buildResponse {
+            if (newElement == null) {
+                throw InvalidRequestBodyException()
+            }
+            return@buildResponse ListVersionTransfer(
+                createPersistentListService().add(id, newElement.newElement!!)
+            )
         }
-        return@buildResponse ListVersionTransfer(
-            createPersistentListService().remove(id, oldElement.oldElement!!))
-    }
 
-    @PUT
-    fun setElement(@PathParam("id") id: Long, newValue: NewValue) = ResponseBuilder.buildResponse {
-        if (newValue == null) {
-            throw InvalidRequestBodyException()
+        fun removeElement(id: Long, oldElement: OldElement) = ResponseBuilder.buildResponse {
+            if (oldElement == null) {
+                throw InvalidRequestBodyException()
+            }
+            return@buildResponse ListVersionTransfer(
+                createPersistentListService().remove(id, oldElement.oldElement!!)
+            )
         }
-        return@buildResponse ListVersionTransfer(
-            createPersistentListService().set(id, newValue.oldValue!!, newValue.newValue!!))
-    }
 
-    @GET
-    @Path("/delete/{oldElement}")
-    fun removeElementWithPathValue(@PathParam("id") id: Long,
-                                   @PathParam("oldElement") oldElement: Int) =
-        ResponseBuilder.buildResponse {
+        fun setElement(id: Long, newValue: NewValue) = ResponseBuilder.buildResponse {
+            if (newValue == null) {
+                throw InvalidRequestBodyException()
+            }
+            return@buildResponse ListVersionTransfer(
+                createPersistentListService().set(id, newValue.oldValue!!, newValue.newValue!!)
+            )
+        }
+
+        fun removeElementWithPathValue(id: Long, oldElement: Int) = ResponseBuilder.buildResponse {
             return@buildResponse ListVersionTransfer(createPersistentListService().remove(id, oldElement))
         }
 
-    fun createPersistentListService(): PersistentListService {
-        val listService = PersistentListServiceImpl()
-        listService.entityManager = EntityManagerUtil.getEntityManager()
-        return listService
+        fun createPersistentListService(): PersistentListService {
+            val listService = PersistentListServiceImpl()
+            listService.entityManager = EntityManagerUtil.getEntityManager()
+            return listService
+        }
     }
 }
