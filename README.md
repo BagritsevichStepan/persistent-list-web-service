@@ -1,6 +1,6 @@
 # Web Service for Partially Persistent List Management
 
-This is solution of the [3 test task](https://gist.github.com/mmazurkevich/a96393788246f85b2d2adf2cbff2af0e) in [Workspace Model Metadata Storage Team](https://internship.jetbrains.com/projects/1327/).
+The repository contains a solution of the [3 test task](https://gist.github.com/mmazurkevich/a96393788246f85b2d2adf2cbff2af0e) in [Workspace Model Metadata Storage Team](https://internship.jetbrains.com/projects/1327/).
 
 _Implemented with Kotlin_
 
