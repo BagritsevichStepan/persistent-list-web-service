@@ -7,8 +7,6 @@ _Implemented with Kotlin_
 ## Stages of Development
 1. [Implementation using Spring Boot](#stage1)
 2. [Implementation using asynchronous REST API](#stage2)
-3. [Frontend development using Freemarker](#stage3)
-4. [Docker and Deployment](#stage4)
 
 ## <a name="stage1"></a>First stage. Spring Boot
 Web Service Implementation using Spring Boot Framework, ORM Framework Hibernate (included in Spring Boot) and H2 Database (in-memory-database).
@@ -111,13 +109,6 @@ data class Version(
 ### Testing
 Technologies that were used for testing: SpringBootTesting, JUnit and Mockito
 
-TODO
+## <a name="stage2"></a>Second stage. Asynchronous REST API
 
-## <a name="stage2"></a>Second stage. Jersey Framework
-TODO
 
-## <a name="stage3"></a>Third stage. Freemarker
-TODO
-
-## <a name="stage4"></a>Fourth stage. Docker
-TODO
